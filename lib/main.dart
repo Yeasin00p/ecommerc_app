@@ -1,5 +1,4 @@
 import 'package:ecommerc_app/ui/screen/eamil_auth_screen.dart';
-import 'package:ecommerc_app/ui/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
