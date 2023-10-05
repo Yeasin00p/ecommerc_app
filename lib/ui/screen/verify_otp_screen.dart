@@ -1,3 +1,4 @@
+import 'package:ecommerc_app/ui/screen/complete_profile_screen.dart';
 import 'package:ecommerc_app/ui/utils/app_colors.dart';
 import 'package:ecommerc_app/ui/widget/app_elevated_button.dart';
 import 'package:ecommerc_app/ui/widget/logo_widget.dart';
@@ -80,7 +81,14 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 ),
                 AppElevatedButton(
                   text: 'Continue',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CompleteProfileScreen(),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 16,
@@ -95,12 +103,15 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         style: TextStyle(color: AppColors.primaryColor),
                       ),
                     ],
-                    
                   ),
-                   
                 ),
-                const SizedBox(height: 16,),
-                TextButton(onPressed: (){}, child: const Text('Resend'),),
+                const SizedBox(
+                  height: 16,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Resend'),
+                ),
               ],
             ),
           ),
