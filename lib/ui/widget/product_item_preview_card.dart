@@ -34,6 +34,7 @@ class ProductItemPreviewCard extends StatelessWidget {
             height: 6,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 '\$400',
