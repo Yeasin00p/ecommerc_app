@@ -30,7 +30,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       ),
       body: GridView.builder(
         gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         itemBuilder: (context, index) {
           return CategoryItemWidget(
               categoryItemName: 'Computer',
