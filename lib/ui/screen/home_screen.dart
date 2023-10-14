@@ -1,9 +1,11 @@
+import 'package:ecommerc_app/ui/getx/home_controller.dart';
 import 'package:ecommerc_app/ui/widget/category_item_widget.dart';
 import 'package:ecommerc_app/ui/widget/home/home_banner_slider.dart';
 import 'package:ecommerc_app/ui/widget/home/section_header.dart';
 import 'package:ecommerc_app/ui/widget/product_item_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +15,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeController homeController = Get.put(HomeController());
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +89,13 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 16,
               ),
-              HomeBannerSlider(),
+              GetBuilder<HomeController>(builder: (homeController) {
+              if(homeController.getProductSliderInProgress){
+                return const CircularProgressIndicator();
+              }else{
+                return HomeBannerSlider(productSliderModel: homeController.productSliderModel);
+              }
+              }),
               SectionHeader(headerName: 'Categories', onTapSeeAll: () {}),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -110,51 +125,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-                SectionHeader(headerName: 'Popular', onTapSeeAll: () {}),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                    ],
-                  ),
+              SectionHeader(headerName: 'Popular', onTapSeeAll: () {}),
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                  ],
                 ),
-                const SizedBox(height: 16,),
-                SectionHeader(headerName: 'Special', onTapSeeAll: () {}),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                    ],
-                  ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(headerName: 'Special', onTapSeeAll: () {}),
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                  ],
                 ),
-                const SizedBox(height: 16,),
-                SectionHeader(headerName: 'New', onTapSeeAll: () {}),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                      ProductItemPreviewCard(),
-                    ],
-                  ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(headerName: 'New', onTapSeeAll: () {}),
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                    ProductItemPreviewCard(),
+                  ],
                 ),
-                
+              ),
             ],
           ),
         ),

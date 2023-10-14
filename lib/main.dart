@@ -1,4 +1,4 @@
-import 'package:ecommerc_app/ui/screen/eamil_auth_screen.dart';
+import 'package:ecommerc_app/ui/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-     home: const EmialAuthScreen(),
+     home: const SplashScreen(),
     );
   }
 }

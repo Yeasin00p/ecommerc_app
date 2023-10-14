@@ -1,4 +1,5 @@
 import 'package:ecommerc_app/ui/getx/bottom_navigation_controller.dart';
+import 'package:ecommerc_app/ui/getx/home_controller.dart';
 import 'package:ecommerc_app/ui/screen/cart_screen.dart';
 import 'package:ecommerc_app/ui/screen/category_screen.dart';
 import 'package:ecommerc_app/ui/screen/home_screen.dart';
@@ -17,12 +18,18 @@ class MainBottomNavigationBar extends StatefulWidget {
 
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   BottomNavigationController controller = Get.put(BottomNavigationController());
+  HomeController homeController=Get.put(HomeController());
   final List<Widget> screen = [
     HomeScreen(),
     CategoryScreen(),
     CartScreen(),
     WishListScreen(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

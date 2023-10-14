@@ -1,11 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerc_app/data/model/product_slider_model.dart';
 import 'package:ecommerc_app/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeBannerSlider extends StatelessWidget {
-  HomeBannerSlider({super.key});
+  HomeBannerSlider({super.key, required this.productSliderModel});
   final CarouselController _carouselController = CarouselController();
   final ValueNotifier<int> _currentSelectedIndex = ValueNotifier(0);
+  final ProductSliderModel productSliderModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,12 @@ class HomeBannerSlider extends StatelessWidget {
           options: CarouselOptions(
             height: 160,
             viewportFraction: 1,
+            autoPlay: true,
             onPageChanged: (index, _) {
               _currentSelectedIndex.value = index;
             },
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: productSliderModel.data?.map((slider) {
             return Builder(builder: (BuildContext context) {
               return Container(
                 alignment: Alignment.center,
@@ -29,10 +32,9 @@ class HomeBannerSlider extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  'text $i',
-                  style: const TextStyle(fontSize: 16),
+                  image: DecorationImage(
+                    image: NetworkImage(slider.image ?? ''),
+                  ),
                 ),
               );
             });
@@ -46,7 +48,9 @@ class HomeBannerSlider extends StatelessWidget {
             builder: (context, updateValue, _) {
               return Row(
                 children: [
-                  for (int i = 0; i < 5; i++)
+                  for (int i = 0;
+                      i < (productSliderModel.data?.length ?? 0);
+                      i++)
                     Container(
                       margin: const EdgeInsets.all(3),
                       height: 12,
